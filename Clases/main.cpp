@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <string>
+#include <string>
 
 using std::string;
 using std::cout;
@@ -11,13 +11,21 @@ private:
     string nombreCurso; // atributo privado para almacenar el nombre del curso
 
 public:
+    // Constructor inicializa a nombreCurso con la cadena que se suministsra como argumento
+    // Al usar el constructor, el objeto requerira de los argumentos necesarios para crear una instancia
+    explicit LibroCalificaciones( string nombre ) 
+        : nombreCurso(nombre) // Inicializador de miembro para inicializar
+    {
+        // Cuerpo vacío
+    }
+
     // Función const porque solo muestra datos, no modifica nada
     void mostrarMensaje() const {
         cout << "Bienvenido al curso " << nombreCurso << endl;
     }
 
     // Función NO const porque modifica el atributo nombreCurso
-    void establecerNombreCurso(string nombre) {
+    void establecerNombreCurso( string nombre ) {
         nombreCurso = nombre;
     }
 
@@ -30,7 +38,9 @@ public:
 int main() {
     
     // Instanciar a la clase 
-    LibroCalificaciones miPrimerLibro;
+    LibroCalificaciones miPrimerLibro("Historia"); // Construímos el objeto y pasamos el argumento al constructor
+    LibroCalificaciones segundoLibro("Matematicas");
+
 
     string nombreDelCurso;
     cout << "Escriba el nombre del curso: " << endl;
@@ -41,6 +51,9 @@ int main() {
     miPrimerLibro.establecerNombreCurso(nombreDelCurso);
     // muestra el mensaje de bienvenida
     miPrimerLibro.mostrarMensaje();
+    // Uso de la función miembro.
+    cout << "Segundo libro: " << segundoLibro.obtenerNombreCurso() << endl;
+
 
 
     return 0;
